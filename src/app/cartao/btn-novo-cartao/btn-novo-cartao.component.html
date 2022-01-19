@@ -1,0 +1,63 @@
+<button [class]="estilo" (click)="abrirModal(template)">{{ texto }}</button>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{ texto }}</h4>
+    <button
+      type="button"
+      class="close btn btn-outline-dark pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+     <i class="fa fa-remove"></i>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="frmNew" (keyup.enter)="$event.preventDefault()">
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          formControlName="nome"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Descrição</label>
+        <textarea
+          class="form-control"
+          id="description"
+          formControlName="descricao"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="inlineFormInputGroupUsername2"
+          >Adicione um item na checklist</label
+        >
+        <div class="input-group mb-2 mr-sm-2">
+          <input
+            type="text"
+            class="form-control"
+            id="inlineFormInputGroupUsername2"
+            formControlName="checklist"
+            (keyup.enter)="adicionarChecklist($event)"
+          />          
+            <span class="input-group-text" (click)="adicionarChecklist($event)"><i class="fa fa-plus"></i></span>
+        </div>
+      </div>
+
+      <app-checklist [checklist]="checklist"></app-checklist>
+
+      <div class="d-flex justify-content-center">
+        <button
+          class="btn btn-primary"
+          [disabled]="frmNew.invalid"
+          (click)="salvar()"
+        >
+          Salvar
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>

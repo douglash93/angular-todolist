@@ -1,0 +1,23 @@
+<button
+  [class]="estilo"
+  (click)="abrirModal(templateModal)"
+>
+  <i class="fa fa-trash"></i> {{ texto }}
+</button>
+
+<ng-template #templateModal>
+  <div class="modal-body text-center">
+    <p>
+      Deseja realmente
+      <span class="text-capitalize text-danger font-weight-bold">remover</span>
+      a tarefa <b>{{ nomeCartao }}</b
+      >?
+    </p>
+    <button type="button" class="btn btn-default" (click)="confirma()">
+      Sim
+    </button>
+    <button type="button" class="btn btn-primary ml-2" (click)="cancela()">
+      Não
+    </button>
+  </div>
+</ng-template>

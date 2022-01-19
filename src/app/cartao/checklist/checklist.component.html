@@ -1,0 +1,24 @@
+<div class="mb-3" *ngIf="checklist.length > 0">
+    <small class="text-muted">Checklist</small>
+    <div
+      class="custom-control custom-checkbox"
+      *ngFor="let task of checklist; let i = index"
+    >
+      <input
+        type="checkbox"
+        class="custom-control-input"
+        [checked]="task.concluido"
+        [attr.id]="'cardIndex_' + cardIndex + '_taskIndex_' + i"
+        (click)="updateChecklist(i)"
+      />
+      <label
+        class="custom-control-label mx-2"
+        [for]="'cardIndex_' + cardIndex + '_taskIndex_' + i"
+      >
+        <small
+          [ngStyle]="{ 'text-decoration': task.concluido ? 'line-through' : 'none' }"
+          >{{ task.nome }}</small
+        ></label
+      >
+    </div>
+  </div>
